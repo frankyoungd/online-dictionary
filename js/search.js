@@ -16,7 +16,8 @@ $(document).ready(function  () {
 				.animate({"opacity":1,"top":0},'slow');
 	    },function  () {
 	    	//true
-	    	alert("true");
+	    	var chinese = eval("dictionary.$"+$("#search").val());
+	    	(chinese != undefined)?$(".result").text(chinese).show():$(".result").text("找不到该单词").show();
 	    })
    	});
 

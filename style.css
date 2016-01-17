@@ -82,3 +82,14 @@ body{
 #btn:hover{
 	background-color: rgb(159,75,75);
 }
+.result{
+	box-sizing: border-box;
+	width: 438px;
+	min-width: 360px;
+	margin: 45px auto 0;
+	padding: 10px 5px;
+	border: 1px solid rgb(146,51,51);
+	height: 145px;
+	font-size: 18px;
+	display: none;
+}

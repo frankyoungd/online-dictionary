@@ -5,7 +5,6 @@
 	<title>在线词典</title>
 	<link rel="stylesheet" href="style.css">
 	<script src="js/jquery.js"></script>
-	<script src="js/search.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -13,12 +12,16 @@
 			<img src="images/dictionary.png" alt="logo">
 			<h2>在线词典</h2>
 		</div>
-		<form action="search.php" class="entry">
+		<form  class="entry">
 			<span class="search">
 				<input type="text" name="search" id="search" maxlength="30" autofocus>
 			</span>
 			<input type="submit" value="翻译" id="btn">
 		</form>
+		<div class="result"></div>
 	</div>
+
 </body>
+	<script src="dictionary.js"></script>
+	<script src="js/search.js"></script>
 </html>
