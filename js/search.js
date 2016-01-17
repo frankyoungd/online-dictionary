@@ -9,41 +9,16 @@ $(document).ready(function  () {
 	    if ($('.info-reg')) {
 	    	$('.info-reg').remove();
 	    };
-	    /**
-	     * 空输入检测，为空改变input边框颜色,感叹号提示
-	     * @param  {string} $('#search').val() input输入
-	     * @return {}                    
-	     */
-		if ($('#search').val() == '') {
-			var alert = $('<span class="info">输入为空</span>')
-						.appendTo($(".search"))
-						.fadeOut(8000,function  () {
-							$(this).remove();
-						});
-			$('#search').focus()
-						.css({'border-color':'red'},'fast');
-			return;
-		}
-		
-		
-		/**
-		 * 字符串过滤，
-		 * @param  {integer} var i 临时循环变量
-		 * @return {none}     含有特殊字符退出
-		 */
-		var result = false;
-		var reg = new RegExp("[a-zA-Z]",'gi');
-		for (var i = $('#search').val().length - 1; i >= 0; i--) {
-			result = reg.test( $('#search').val() );
-			if (!result) {
-				// console.log("not match $result is "+result);
-				$('<div class="info-reg">请输入英文单词!!!</div>')
+	    var reg = new RegExp("[a-zA-Z]","gi");
+	    detect($("#search").val(),reg,function  () {
+	    	$('<div class="info-reg">请输入英文单词!!!</div>')
 				.appendTo($(".entry"))
 				.animate({"opacity":1,"top":0},'slow');
-				return;
-			}
-		};	
-	});
+	    },function  () {
+	    	//true
+	    	alert("true");
+	    })
+   	});
 
 	$('#search').focus(function  () {
 		if ($(this).text() == "") {
@@ -57,5 +32,23 @@ $(document).ready(function  () {
 	})
 })
 
+ function detect (inputString, reg, falseCallback, trueCallback) {
+	var input = inputString.trim(); //删除前置后置空格
+	console.clear();
+	console.log(input);
+	var result = false;
+	var i = input.length;
+	do{
+		result = reg.test(input);
+		console.log( i.toString() + " : " +result);
+		if (!result) {
+			if (arguments.length >= 3){ falseCallback();}
+				console.log("非法字符");
+				return;
+			};
+		i--;
+	}while(i>0)
+	if (arguments.length == 4) {trueCallback();}
+}
 
 
